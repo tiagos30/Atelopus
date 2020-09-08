@@ -85,7 +85,7 @@ public class Scheduler {
 
     public void printResults() {
         // {EDIT:} Edit here title so you can keep track of what is being simulated. 
-        System.out.println("X: Zoospore Death Rate. Y: uP.");
+        System.out.println("X: Zoospore Death Rate. Y: uP");
         for (Simulator sim : this.simulators) {
             
             // {EDIT} X and Y variables here! Must match simulated variables above. 
