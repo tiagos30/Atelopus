@@ -5,6 +5,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import java.io.File;  
+import java.io.IOException; 
+import java.io.FileWriter; 
+
+
 public class Scheduler {
     ArrayList<Simulator> simulators;
     short threads;
@@ -28,14 +33,14 @@ public class Scheduler {
 
         // For the desired intervals and for the desired variables, create a list of x and y Simulators.
         this.simulators = new ArrayList<Simulator>(100);  // allocate memory for at least a 100 sims;
-        for (double y = 0.4; y <= 0.6; y += 0.1) {
-            for (double x = 0.4; x <= 0.6; x += 0.1) {
+        for (double y = 50; y <= 75; y += 0.5) {
+            for (double x = 0; x <= 0.5; x += 0.1) {
 
                 Simulator sim = new Simulator(this, weeks);
 
                 // {EDIT} X and Y variables here!
                 sim.ZoosporeDeathRate = (float) x;
-                sim.uP = (float) y;
+                sim.est = (float) y;
 
                 // Add sim to list
                 simulators.add(sim);
@@ -85,15 +90,39 @@ public class Scheduler {
 
     public void printResults() {
         // {EDIT:} Edit here title so you can keep track of what is being simulated. 
-        System.out.println("X: Zoospore Death Rate. Y: uP");
-        for (Simulator sim : this.simulators) {
+        
+        
+        try {
             
-            // {EDIT} X and Y variables here! Must match simulated variables above. 
-            float x = sim.ZoosporeDeathRate;
-            float y = sim.uP;
-            byte r = sim.result;  // simulation result. 0 if both dead. 1 if frogs alive and zoospore dead. 2 if both alive.
-            
-            System.out.println("X: " + x + " Y: " + y + " R: " + r);
+            // Create new file
+            File outputFile = new File("output.csv");
+            if (outputFile.createNewFile()) {
+                System.out.println("File created: " + outputFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            // Create new file writer
+            FileWriter writer = new FileWriter("output.csv");
+
+            // Write headers
+            writer.write("Zoospore Death Rate,Est,RESULT\n");
+
+            for (Simulator sim : this.simulators) {
+                
+                // {EDIT} X and Y variables here! Must match simulated variables above. 
+                float x = sim.ZoosporeDeathRate;
+                float y = sim.est;
+                byte r = sim.result;  // simulation result. 0 if both dead. 1 if frogs alive and zoospore dead. 2 if both alive.
+                
+                writer.write(x + "," + y + "," + r + "\n");
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
         
     }
