@@ -1,6 +1,9 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Edit intervals and target variables (x and y) on Scheduler.java on method createSimulators. Also edit printResults method to match headers and variables on createSimulators. 
+
+Run program by running App.java
+
 
 ## Folder Structure
 
