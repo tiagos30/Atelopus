@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "c:\\Users\\Santiago Nestares\\Downloads\\jfreechart-1.5.0-javadoc.jar"
+        ]
+    }
+}
