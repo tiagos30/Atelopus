@@ -13,6 +13,7 @@ import java.net.http.HttpClient;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.FileWriter;
+import com.google.gson.*;
 
 
 public class Scheduler {
@@ -119,12 +120,12 @@ public class Scheduler {
             writer.write("Zoospore Death Rate,Est,RESULT\n");
 
             for (Simulator sim : this.simulators) {
-                
+
                 // {EDIT} X and Y variables here! Must match simulated variables above. 
                 float x = sim.ZoosporeDeathRate;
                 float y = sim.est;
                 byte r = sim.result;  // simulation result. 0 if both dead. 1 if frogs alive and zoospore dead. 2 if both alive.
-                
+
                 writer.write(x + "," + y + "," + r + "\n");
             }
 

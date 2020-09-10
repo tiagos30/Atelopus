@@ -31,7 +31,8 @@ public class Simulator implements Runnable {
     byte result;  // simulation result. 0 if both dead. 1 if frogs alive and zoospore dead. 2 if both alive.
 
 
-    /* CONSTRUCTORS */ 
+    /* CONSTRUCTORS */
+
     public Simulator(Scheduler scheduler, int weeks) {
         // Constructor for default values
         this.scheduler = scheduler;
@@ -89,4 +90,5 @@ public class Simulator implements Runnable {
         return;
     }
     */
+
 }

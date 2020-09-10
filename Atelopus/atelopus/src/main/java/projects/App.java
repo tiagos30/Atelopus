@@ -27,5 +27,5 @@ public class App {
 // TODO: send as many tasks as executor can handle at server + 1 or 2 as buffer. have the server's thread return the response along with server name to get an additional task. 
 
 // FUTURE
-// Recevie simulator requests via HTTPS (server)
+// Receive simulator requests via HTTPS (server)
 // Receive user input [scheduler] (given a list of servers in network)
