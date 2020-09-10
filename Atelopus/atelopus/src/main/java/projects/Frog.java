@@ -52,9 +52,6 @@ public class Frog {
     /* METHODS */ 
     public void timestep() {
 
-        // if frog is dead, return
-        if (!this.getAlive()) {return;}
-
         // FROGS AND TOADS DIE
         this.simulateDeath();
 

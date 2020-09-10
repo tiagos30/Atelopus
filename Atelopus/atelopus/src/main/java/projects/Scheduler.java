@@ -1,17 +1,22 @@
 package projects;
+
 import java.util.ArrayList;
- 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import java.io.File;  
-import java.io.IOException; 
-import java.io.FileWriter; 
+import java.io.File;
+import java.io.IOException;
+import java.net.http.HttpClient;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.io.FileWriter;
 
 
 public class Scheduler {
-    ArrayList<Simulator> simulators;
+    Queue<Simulator> simulators;
     short threads;
 
     boolean serverMode;
@@ -32,7 +37,7 @@ public class Scheduler {
     public void createSimulators(int weeks) {
 
         // For the desired intervals and for the desired variables, create a list of x and y Simulators.
-        this.simulators = new ArrayList<Simulator>(100);  // allocate memory for at least a 100 sims;
+        this.simulators = new LinkedList<Simulator>();  // allocate memory for at least a 100 sims;
         for (double y = 50; y <= 75; y += 0.5) {
             for (double x = 0; x <= 0.5; x += 0.1) {
 
@@ -88,22 +93,27 @@ public class Scheduler {
     // Convert to sim
     // Run sim as thread
 
-    public void printResults() {
+    public void writeResults() {
         // {EDIT:} Edit here title so you can keep track of what is being simulated. 
         
         
         try {
-            
+
+            // Create Date time in appropriate format to use as file name
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss");
+            String dateTimeString = dateTime.format(formatter);
+
             // Create new file
-            File outputFile = new File("output.csv");
+            File outputFile = new File("output/results" + dateTimeString + ".csv");
             if (outputFile.createNewFile()) {
                 System.out.println("File created: " + outputFile.getName());
             } else {
                 System.out.println("File already exists.");
             }
-
+            
             // Create new file writer
-            FileWriter writer = new FileWriter("output.csv");
+            FileWriter writer = new FileWriter("output/results" + dateTimeString + ".csv");
 
             // Write headers
             writer.write("Zoospore Death Rate,Est,RESULT\n");
@@ -121,7 +131,7 @@ public class Scheduler {
             writer.close();
 
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred writing the output file.");
             e.printStackTrace();
         }
         

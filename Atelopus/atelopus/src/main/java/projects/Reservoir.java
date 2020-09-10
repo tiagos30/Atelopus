@@ -171,12 +171,6 @@ public class Reservoir {
         // add one week to current frogs
         this.addOneWeek();
 
-        // create new frogs
-        for (int i=0; i < this.newbornQueue; i++) {
-            frogs.add(new Frog(this));
-        }
-        this.newbornQueue = 0;
-
         // add zoospores from zoosporeQueue
         this.addZoospores(this.getZoosporesQueue());
         this.zoosporeQueue = 0;
@@ -189,6 +183,12 @@ public class Reservoir {
             // If frog is NOT alive, remove it
             if (!this.frogs.get(i).getAlive()) {frogs.remove(i);}
         }
+
+        // create new frogs
+        for (int i=0; i < this.newbornQueue; i++) {
+            frogs.add(new Frog(this));
+        }
+        this.newbornQueue = 0;
         
         // Update number of tadpoles
         this.updateAccompTadpoles();

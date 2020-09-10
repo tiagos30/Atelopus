@@ -10,7 +10,7 @@ public class App {
         Scheduler sched = new Scheduler((short) 8, false, false);
         sched.createSimulators(2000);
         sched.runSimulators();
-        sched.printResults();
+        sched.writeResults();
 
         //sim.simulateScenarios(2000);
 
@@ -21,7 +21,6 @@ public class App {
     }
 }
 
-// TODO: create git hub
 // TODO: make docker container
 // TODO: make sim out file of some sort (maybe JSON text)
 // TODO BONUS: make scheduler or server mode apps. scheduler distributes workloads and receives results.

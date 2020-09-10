@@ -71,7 +71,7 @@ public class Simulator implements Runnable {
             // simulate timestep
             r.timestep();
             // every 2 weeks check if anyone won to prevent oversimulating
-            if (i%20 == 0 && determineResult(r) != 2) {
+            if (i%2 == 0 && determineResult(r) != 2) {
                 break;
             }
 
@@ -84,4 +84,9 @@ public class Simulator implements Runnable {
             return;
         }
     }
+/*
+    public String printSimulator() {
+        return;
+    }
+    */
 }
