@@ -9,11 +9,9 @@ import java.util.concurrent.TimeUnit;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpClient;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.FileWriter;
-import com.google.gson.*;
 
 
 public class Scheduler {
